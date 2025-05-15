@@ -2,25 +2,25 @@ import streamlit as st
 import openai
 import json
 
-# Load your OpenAI API key
-openai.api_key = "sk-proj-wyp6TCVsueBXqH1GgYNIT3BlbkFJVEsuZOPZ2PlDXr5anEIm"
+# ✅ NEW: Use OpenAI client setup (instead of deprecated openai.api_key)
+client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])  # ✅ Secure best practice
 
-# Load the JSON data
+# ✅ Load the JSON data
 with open('employee_info.json') as f:
     employee_data = json.load(f)
 
-# Function to query OpenAI GPT-3.5-turbo
+# ✅ Updated GPT-3.5-turbo call using OpenAI v1.x SDK
 def query_gpt3(prompt):
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(  # ✅ changed from openai.ChatCompletion.create
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": prompt}
         ]
     )
-    return response.choices[0].message['content'].strip()
+    return response.choices[0].message.content.strip()  # ✅ changed syntax (no more ['content'])
 
-# Streamlit UI
+# ✅ Streamlit UI
 st.title("Employee Information Chatbot")
 
 user_input = st.text_input("Ask a question about the employees:")
