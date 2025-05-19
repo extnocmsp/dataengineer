@@ -1,6 +1,7 @@
 import streamlit as st
 import openai
 import json
+from openai import RateLimitError
 
 # ✅ NEW: Use OpenAI client setup (instead of deprecated openai.api_key)
 client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])  # ✅ Secure best practice
@@ -19,6 +20,8 @@ def query_gpt3(prompt):
         ]
     )
     return response.choices[0].message.content.strip()  # ✅ changed syntax (no more ['content'])
+except RateLimitError:
+        return "⚠️ We're currently sending too many requests. Please wait a moment and try again."
 
 # ✅ Streamlit UI
 st.title("Employee Information Chatbot")
