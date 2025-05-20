@@ -24,7 +24,7 @@ def query_gpt3(prompt):
         return response.choices[0].message.content.strip()
     
     except RateLimitError:
-        time.sleep(3)  # ✅ Delay before retrying or returning
+        time.sleep(5)  # ✅ Delay before retrying or returning
         return "⚠️ We're currently sending too many requests. Please wait a moment and try again."
 
 # ✅ Streamlit UI
@@ -36,7 +36,7 @@ if st.button("Submit"):
     if user_input:
         prompt = f"Given the following employee data: {json.dumps(employee_data, indent=2)}\n\nAnswer the following question:\n{user_input}"
         st.info("Generating your answer, please wait...")
-        time.sleep(1.5)
+        time.sleep(10)
         answer = query_gpt3(prompt)
         st.write("Answer:")
         st.write(answer)
