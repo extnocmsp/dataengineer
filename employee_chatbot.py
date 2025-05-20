@@ -28,7 +28,7 @@ def query_gpt3(prompt):
         return "⚠️ We're currently sending too many requests. Please wait a moment and try again."
 
 # ✅ Streamlit UI
-st.title("Employee Information Chatbot")
+st.title("Splan Chatbot Project")
 
 user_input = st.text_input("Ask a question about the employees:")
 
