@@ -11,7 +11,7 @@ client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # ✅ Load employee data
 with open('splanprojectcontent.json') as f:
-    employee_data = json.load(f)
+    splanprojectcontent = json.load(f)
 
 # ✅ Session State Initialization
 if "chat_history" not in st.session_state:
@@ -58,7 +58,7 @@ user_input = st.text_input("Ask our Expert about our Splan Products:")
 
 if st.button("Submit"):
     if user_input:
-        prompt = f"Given the following employee data: {json.dumps(employee_data, indent=2)}\n\nAnswer this question:\n{user_input}"
+        prompt = f"Given the following employee data: {json.dumps(splanprojectcontent, indent=2)}\n\nAnswer this question:\n{user_input}"
         st.info("Generating your answer, please wait...")
         time.sleep(2)
 
