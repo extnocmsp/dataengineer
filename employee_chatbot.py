@@ -10,7 +10,7 @@ from openai import RateLimitError
 client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # ✅ Load employee data
-with open('employee_info.json') as f:
+with open('splanprojectcontent.json') as f:
     employee_data = json.load(f)
 
 # ✅ Session State Initialization
