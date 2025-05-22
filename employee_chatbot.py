@@ -54,7 +54,7 @@ def query_gpt3(prompt):
         return "⚠️ Too many requests. Please wait and try again."
 
 # ✅ User Input
-user_input = st.text_input("Ask a question about the employees:")
+user_input = st.text_input("Ask our Expert about our Splan Products:")
 
 if st.button("Submit"):
     if user_input:
